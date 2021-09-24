@@ -6,7 +6,7 @@ export const initialState = {
     value: 'Lisbon',
   },
   searchResult: {
-    result: [],
+    result: {},
   },
 };
 

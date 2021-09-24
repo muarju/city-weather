@@ -38,7 +38,7 @@ function Navbar(props) {
                        <div className="col-md-4 d-flex">
                        <input class="form-control mr-2"
                          type="search" 
-                         placeholder="Type a city Name" 
+                         placeholder="Type a city" 
                          aria-label="Search"
                          onChange={inputHandler}
                          value={state} />
