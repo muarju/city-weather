@@ -1,6 +1,20 @@
 import {useState,useEffect} from 'react'
 import {Container, Row, Col} from 'react-bootstrap'
-export default function Home() {
+import {addSearchResult} from '../../redux/actions'
+
+import {connect} from 'react-redux'
+
+const mapStateToProps = state => ({
+    searchResult: state.searchResult.result,
+    searchValue: state.search.value,
+  })
+  
+  const mapDispatchToProps = dispatch => ({
+    addResultToSearchResult: (value) => dispatch(addSearchResult(value)),
+  })
+
+
+function Home(props) {
     // State
 const [apiData, setApiData] = useState({});
 const [getState, setGetState] = useState('lisbon');
@@ -8,7 +22,7 @@ const [state, setState] = useState('lisbon');
 
   // API KEY AND URL
 const apiKey = process.env.REACT_APP_API_KEY;
-const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${state}&appid=${apiKey}`;
+const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.searchValue}&appid=${apiKey}`;
   
 // Side effect
 useEffect(() => {
@@ -33,27 +47,7 @@ const kelvinToFarenheit = (k) => {
         <Row>
           <Col>
             <div className="container">
-                <div className="mt-3 d-flex flex-column justify-content-center align-items-center">
-                <div class="col-auto">
-                    <label for="location-name" class="col-form-label">
-                    Enter Location :
-                    </label>
-                </div>
-                <div class="col-auto">
-                    <input
-                    type="text"
-                    id="location-name"
-                    class="form-control"
-                    onChange={inputHandler}
-                    value={getState}
-                    />
-                </div>
-                <button className="btn btn-primary mt-2" onClick={submitHandler}>
-                    Search
-                </button>
-                </div>
-
-                <div className="card mt-3 mx-auto" style={{ width: '60vw' }} >
+               <div className="card mt-3 mx-auto" style={{ width: '60vw' }} >
                 {apiData.main ? (
                     <div class="card-body text-center">
                     <img
@@ -74,13 +68,13 @@ const kelvinToFarenheit = (k) => {
 
                     <div className="row mt-4">
                         <div className="col-md-6">
-                        <p>
+                        <p>Today's Lowest
                             <i class="fas fa-temperature-low "></i>{' '}
                             <strong>
                             {kelvinToFarenheit(apiData.main.temp_min)}&deg; C
                             </strong>
                         </p>
-                        <p>
+                        <p>Today's Heights
                             <i className="fas fa-temperature-high"></i>{' '}
                             <strong>
                             {kelvinToFarenheit(apiData.main.temp_max)}&deg; C
@@ -91,6 +85,10 @@ const kelvinToFarenheit = (k) => {
                         <p>
                             {' '}
                             <strong>{apiData.weather[0].main}</strong>
+                        </p>
+                        <p>Humidity
+                            {' '}
+                            <strong>{apiData.main.humidity}%</strong>
                         </p>
                         </div>
                     </div>
@@ -105,3 +103,5 @@ const kelvinToFarenheit = (k) => {
       </Container>
     )
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

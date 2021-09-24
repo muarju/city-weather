@@ -3,8 +3,10 @@ import mainReducer from '../reducers'
 
 export const initialState = {
   search: {
-    value: '',
-    result: []
+    value: 'Lisbon',
+  },
+  searchResult: {
+    result: [],
   },
 };
 

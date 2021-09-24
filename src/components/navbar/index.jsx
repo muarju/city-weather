@@ -1,8 +1,29 @@
-import React from 'react'
+import React,{useState} from 'react'
 import logo from '../../assets/img/logo.svg'
+import {addSearchValue} from '../../redux/actions'
+import {connect} from 'react-redux'
+
+const mapStateToProps = state => ({
+    searchValue: state.search.value,
+  })
+  
+  const mapDispatchToProps = dispatch => ({
+    addToSearchValue: (value) => dispatch(addSearchValue(value)),
+  })
+
+function Navbar(props) {
+
+    const [state, setstate] = useState('');
+
+    const inputHandler = (event) => {
+        setstate(event.target.value);
+      };
+      
+      const submitHandler = () => {
+        props.addToSearchValue(state)
+      };
 
 
-export default function Navbar(props) {
     return (
         <div>
             <div class="container-fluid bg-light">
@@ -13,14 +34,17 @@ export default function Navbar(props) {
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse justify-content-end" id="navbarScroll">
-                        <form class="d-flex">
-                        <input class="form-control mr-2" 
-                        type="search" 
-                        placeholder="Type a city Name" 
-                        aria-label="Search"
-                      />
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                        </form>
+                        
+                       <div className="col-md-4 d-flex">
+                       <input class="form-control mr-2"
+                         type="search" 
+                         placeholder="Type a city Name" 
+                         aria-label="Search"
+                         onChange={inputHandler}
+                         value={state} />
+                        <button class="btn btn-outline-success" type="submit" onClick={submitHandler}>Search</button>
+                       
+                       </div>
                     </div>
                 </nav>
             </div>
@@ -28,3 +52,4 @@ export default function Navbar(props) {
         </div>
     )
 }
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

@@ -11,7 +11,7 @@ const mainReducer = (state = initialState, action) => {
     case "ADD_SEARCH_RESULT":
             return {
               ...state,
-                search: {
+              searchResult: {
                     result: [action.payload],
                 },
               }
