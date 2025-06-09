@@ -49,7 +49,7 @@ function Home(props) {
                         <div className="card mt-3 mx-auto" style={{ width: '60vw' }} >
                             {props.searchResult[0] ===undefined ? <Spinner animation="border" /> : 
                             
-                            <div class="card-body text-center">
+                            <div className="card-body text-center">
                             <img
                                 src={`http://openweathermap.org/img/w/${props.searchResult[0].weather[0].icon}.png`}
                                 alt="weather status icon"
@@ -70,7 +70,7 @@ function Home(props) {
                             <div className="row mt-4">
                                 <div className="col-md-6">
                                     <p>Today's Lowest
-                                        <i class="fas fa-temperature-low "></i>{' '}
+                                        <i className="fas fa-temperature-low "></i>{' '}
                                         <strong>
                                             {kelvinToFarenheit(props.searchResult[0].main.temp_min)}&deg; C
                                         </strong>
@@ -97,7 +97,7 @@ function Home(props) {
                             
                             }
                             {/* {props.searchResult[0].main ? (
-                                <div class="card-body text-center">
+                                <div className="card-body text-center">
                                     <img
                                         src={`http://openweathermap.org/img/w/${props.searchResult[0].weather[0].icon}.png`}
                                         alt="weather status icon"
@@ -118,7 +118,7 @@ function Home(props) {
                                     <div className="row mt-4">
                                         <div className="col-md-6">
                                             <p>Today's Lowest
-                                                <i class="fas fa-temperature-low "></i>{' '}
+                                                <i className="fas fa-temperature-low "></i>{' '}
                                                 <strong>
                                                     {kelvinToFarenheit(props.searchResult[0].main.temp_min)}&deg; C
                                                 </strong>

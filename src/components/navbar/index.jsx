@@ -26,23 +26,23 @@ function Navbar(props) {
 
     return (
         <div>
-            <div class="container-fluid bg-light">
-                <nav class="navbar navbar-expand-lg navbar-light bg-light container">
-                    <a class="navbar-brand" href="#">
+            <div className="container-fluid bg-light">
+                <nav className="navbar navbar-expand-lg navbar-light bg-light container">
+                    <a className="navbar-brand" href="#">
                         <img src={logo} alt="Logo" style={{height: "30px",marginRight: "5px"}}/>City Weather</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
+                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                        <span className="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse justify-content-end" id="navbarScroll">
+                    <div className="collapse navbar-collapse justify-content-end" id="navbarScroll">
                         
                        <div className="col-md-4 d-flex">
-                       <input class="form-control mr-2"
+                       <input className="form-control mr-2"
                          type="search" 
                          placeholder="Type a city" 
                          aria-label="Search"
                          onChange={inputHandler}
                          value={state} />
-                        <button class="btn btn-outline-success" type="submit" onClick={submitHandler}>Search</button>
+                        <button className="btn btn-outline-success" type="submit" onClick={submitHandler}>Search</button>
                        
                        </div>
                     </div>
